@@ -8,16 +8,7 @@ const Theme = {
   DARK: 'dark-theme',
 };
 
-const savedTheme = localStorage.getItem('theme');
-
-if (savedTheme) {
-  refs.body.classList.add(savedTheme);
-  console.log(refs.body.classList);
-  if (savedTheme === Theme.DARK) {
-    console.log('yyyyyyyyy');
-    refs.themeSwitch.checked = true;
-  }
-}
+populateTheme();
 
 refs.themeSwitch.addEventListener('change', saveLocalStorage);
 
@@ -31,4 +22,15 @@ function saveLocalStorage(event) {
   }
   const classList = refs.body.classList;
   localStorage.setItem('theme', classList);
+}
+
+function populateTheme() {
+  const savedTheme = localStorage.getItem('theme');
+
+  if (savedTheme) {
+    refs.body.classList.add(savedTheme);
+    if (savedTheme === Theme.DARK) {
+      refs.themeSwitch.checked = true;
+    }
+  }
 }
